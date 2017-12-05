@@ -8,13 +8,14 @@ VCS = vcs -sverilog -timescale=1ns/1ns +acc +vpi \
 	  $(UVM_HOME)/src/dpi/uvm_dpi.cc -CFLAGS -DVCS
 
 
-DESIGN = ../dut/host_if.sv \
+DESIGN = ../dut/clkgen_if.sv \
+         ../dut/host_if.sv \
          ../dut/pio_if.sv  \
 		 ../dut/host.sv   \
 		 ../dut/blockX.sv \
 		 ../dut/sap1.sv
 
-TB = ../tb/tb.sv ../tb/host_agent_pkg.sv ../tb/sap1_env_pkg.sv
+TB = ../tb/tb.sv ../tb/host_agent_pkg.sv ../tb/sap1_env_pkg.sv ../tb/sap1_test_pkg.sv
 
 vcs:
 	$(VCS) $(INCDIR) $(DESIGN) $(TB)

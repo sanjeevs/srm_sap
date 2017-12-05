@@ -8,7 +8,7 @@ module sap1(
   interface host_if
 );
 
-  pio_if pio_if();
+  pio_if pio_if(.clk(clk), .reset(reset));
 
   host host (
     .clk(clk),

@@ -21,10 +21,8 @@ class host_agent extends uvm_agent;
   virtual host_if vif;
 
   // Component members
-  uvm_analysis_port #(host_if_packet) ap;
-  host_agent_config cfg;
+  uvm_analysis_port #(host_xact) ap;
   host_driver drv;
-  host_monitor mon;
   host_sequencer sqr;
 
   // Standard UVM methods
@@ -40,24 +38,14 @@ endfunction
 
 function void host_agent::build_phase(uvm_phase phase);
   `uvm_info(get_full_name(), "Starting to build host_agent", UVM_NONE)
-  mon = host_monitor::type_id::create("host_monitor", this);
-  if(cfg.active == UVM_ACTIVE) begin
-    drv = host_driver::type_id::create("host_driver", this);
-    sqr = host_sequencer::type_id::create("host_sequencer", this);
-  end
+  drv = host_driver::type_id::create("host_driver", this);
+  sqr = host_sequencer::type_id::create("host_sequencer", this);
 endfunction
 
 function void host_agent::connect_phase(uvm_phase phase);
   `uvm_info(get_full_name(), "Connecting up host_agent", UVM_NONE)
-  mon.vif = vif;
-  if(cfg.active == UVM_ACTIVE) begin
-    drv.seq_item_port.connect(sqr.seq_item_export);
-    drv.vif = vif;
-    drv.send_x = cfg.send_x;
-
-    sqr.vif = vif;  
-
-  end
+  drv.seq_item_port.connect(sqr.seq_item_export);
+  drv.vif = vif;
 endfunction
 
 `endif

@@ -13,10 +13,11 @@ module host(
   logic [31:0] base_address;
   logic [31:0] range;
 
+  // SAP1 address decode is from 0xA000_0000 to 0xB000_0000
   always @(posedge clk) 
     if(reset) begin
       base_address = 32'hA000_0000;
-      range = 32'h10000;
+      range = 32'h1000_0000;
     end
 
   logic valid_dec;

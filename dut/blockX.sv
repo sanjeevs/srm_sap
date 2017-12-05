@@ -23,10 +23,10 @@ module blockX(
       end
     end
 
-
+  // Table t1 is at offset 0 and r1 is at offset 0x1000
   always@(posedge clk)
     if(pio_if.cmd_vld && !pio_if.rw) begin
-      if(!pio_if.addr[15]) begin
+      if(pio_if.addr[12]) begin
         pio_if.data_r <= r1;
         pio_if.rd_vld <= 1'b1;
       end

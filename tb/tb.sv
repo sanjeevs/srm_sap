@@ -6,12 +6,13 @@ module tb();
   import uvm_pkg::*;
   `include "uvm_macros.svh"
 
-  bit clk;
   bit reset;
+  bit clk;
 
-  assign #1 clk = ~clk;
+  clkgen_if clkgen_if();
+  assign clk = clkgen_if.clk;
 
-  host_if host_if();
+  host_if host_if(.clk(clk), .reset(reset));
 
   sap1 dut(.clk(clk),
            .reset(reset),
@@ -26,6 +27,7 @@ module tb();
 
   initial begin
     uvm_config_db#(virtual host_if)::set(uvm_root::get(), "*", "host_if", host_if);
+    uvm_config_db#(virtual clkgen_if)::set(uvm_root::get(), "*", "clkgen_if", clkgen_if);
   end
 
   initial begin

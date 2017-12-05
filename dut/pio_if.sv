@@ -2,7 +2,7 @@
 // Pio Interface
 //
 
-interface pio_if;
+interface pio_if(input clk, input reset);
   logic cmd_vld;
   logic [15:0] addr;
   logic [31:0] data_w;
@@ -10,23 +10,32 @@ interface pio_if;
   logic [31:0] data_r;
   logic        rd_vld;
 
-  modport master (
-    output cmd_vld,
-    output addr,
-    output data_w,
-    output rw,
-    input  data_r,
-    input  rd_vld
-  );
+  parameter INPUT_SKEW=1;
+  parameter OUTPUT_SKEW=1;
+
+  clocking master_cb @(posedge clk); 
+    default input #INPUT_SKEW output #OUTPUT_SKEW;
+    input reset;
+    output cmd_vld;
+    output addr;
+    output data_w;
+    output rw;
+    input  data_r;
+    input  rd_vld;
+  endclocking
+  modport master(clocking master_cb);
 
 
-  modport slave (
-    input cmd_vld,
-    input addr,
-    input data_w,
-    input rw,
-    output data_r,
-    output rd_vld
-  );
+  clocking slave_cb @(posedge clk);
+    default input #INPUT_SKEW output #OUTPUT_SKEW;
+    input reset;
+    input cmd_vld;
+    input addr;
+    input data_w;
+    input rw;
+    output data_r;
+    output rd_vld;
+  endclocking 
+  modport slave(clocking slave_cb);
 
 endinterface
