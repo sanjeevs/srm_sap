@@ -40,6 +40,9 @@ module host(
         pio_rw <= host_if.rw;
         pio_cmd_vld <= host_if.cmd_vld;
       end
+      else begin
+        pio_cmd_vld <= 'h0;
+      end
     end
 
   assign pio_if.addr = pio_addr;

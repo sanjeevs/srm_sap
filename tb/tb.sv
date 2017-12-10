@@ -33,4 +33,8 @@ module tb();
   initial begin
     run_test();
   end
+
+  initial begin
+    $vcdpluson();
+  end
 endmodule
