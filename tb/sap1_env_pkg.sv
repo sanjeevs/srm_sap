@@ -5,7 +5,8 @@
 package sap1_env_pkg;
   import uvm_pkg::*;
   `include "uvm_macros.svh"
-
+  
   import host_agent_pkg::*;
+  import sap1_srm_pkg::*;
   `include "sap1_env.svh"
 endpackage

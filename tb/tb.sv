@@ -4,7 +4,6 @@
 
 module tb();
   import uvm_pkg::*;
-  `include "uvm_macros.svh"
 
   bit reset;
   bit clk;
