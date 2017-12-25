@@ -4,8 +4,10 @@
 
 VCS = vcs -sverilog -timescale=1ns/1ns +acc +vpi -debug_all\
       +define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR \
-      +incdir+$(UVM_HOME)/src +incdir+../tb $(UVM_HOME)/src/uvm.sv  \
+      +incdir+$(UVM_HOME)/src $(UVM_HOME)/src/uvm.sv  \
 	  +incdir+$(SRM_HOME)/src $(SRM_HOME)/src/srm.sv \
+	  +incdir+../tb +incdir+../agents/host +incdir+../env +incdir+../tests \
+	  +incdir+../regmodel \
       $(UVM_HOME)/src/dpi/uvm_dpi.cc -CFLAGS -DVCS
 
 SIMV = simv -l test.log
@@ -18,11 +20,10 @@ DESIGN = ../dut/clkgen_if.sv \
 		 ../dut/sap1.sv
 
 TB = ../tb/tb.sv \
-     ../tb/host_agent_pkg.sv \
-      ../tb/sap1_srm_model_pkg.sv \
-	  ../tb/sap1_srm_pkg.sv \
-      ../tb/sap1_env_pkg.sv \
-      ../tb/sap1_test_pkg.sv
+     ../agents/host/host_agent_pkg.sv \
+      ../regmodel/sap1_srm_model_pkg.sv \
+      ../env/sap1_env_pkg.sv \
+      ../tests/sap1_test_pkg.sv
 
 TESTNAME = sap1_srm_test
 
