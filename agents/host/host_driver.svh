@@ -53,6 +53,9 @@ task host_driver::run_phase(uvm_phase phase);
         // Write: Drive the write data with the cmd.
         vif.data_w = req.data_w;
         @(posedge vif.clk);
+        vif.cmd_vld = 1'b0;
+        vif.data_w = 'h0;
+        @(posedge vif.clk);
       end else begin
         // Read: Drop the cmd and wait for rd data.
         @(posedge vif.clk);

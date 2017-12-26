@@ -26,7 +26,6 @@ class sap1_xact_test extends sap1_base_test;
     write_seq.data_w = 32'hdeadbeef;
     write_seq.start(.sequencer(env.host_agent_inst.sqr));
 
-    @(posedge clkgen_if.clk);
     read_seq.addr = 32'ha000_1000;
     read_seq.start(.sequencer(env.host_agent_inst.sqr));
     if(read_seq.data_r != 'hdeadbeef) begin
@@ -34,6 +33,13 @@ class sap1_xact_test extends sap1_base_test;
         $psprintf("Read data mismatch. Got=0x%0x, Exp=0x%0x", read_seq.data_r, 32'hdeadbeef))
     end
                    
+    write_seq.data_w = 32'hf00dcafe;
+    write_seq.start(.sequencer(env.host_agent_inst.sqr));
+    read_seq.start(.sequencer(env.host_agent_inst.sqr));
+    if(read_seq.data_r != 'hf00dcafe) begin
+      `uvm_error(get_full_name(), 
+        $psprintf("Read data mismatch. Got=0x%0x, Exp=0x%0x", read_seq.data_r, 32'hf00dcafe))
+    end
     #100ns;
     phase.drop_objection(.obj(this));
 
