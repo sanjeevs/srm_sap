@@ -1,6 +1,13 @@
 This directory contains "simple as possible" design that is verified using a uvm testbench.
 In this example, the register model is modelled using simple_reg_model instead of "uvm_reg" package.
 
+## FIXME
+1. Merge search adapter into the base_handle class.  
+2. How to implement policy. If backdoor is available then use it else fallback to frontdoor. The
+frontdoor may be avaialalbe only on the root node.  
+3. Provide default handles for these policies. like frontdoor, backdoor.  
+4. Locking is not implemented. Not clear on the race conditions 
+
 ## Design
 The design is a chip called 'sap1'. The address map of the chip is shown below.
 ![AddressMap](docs/addr_map.jpg)

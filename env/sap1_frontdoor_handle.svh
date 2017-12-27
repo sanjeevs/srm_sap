@@ -1,10 +1,13 @@
 `ifndef INCLUDED_sap1_frontdoor_handle_svh
 `define INCLUDED_sap1_frontdoor_handle_svh
 
+//
+// Always use the host front door to access the register model.
+//
 class host_search_frontdoor extends srm_search_adapter;
   `uvm_object_utils(host_search_frontdoor)
 
-  function new(string name="host_frontdoor_handle");
+  function new(string name="host_search_frontdoor");
     super.new(name);
   endfunction
 

@@ -5,11 +5,14 @@ class sap1_base_test extends uvm_test;
   `uvm_component_utils(sap1_base_test)
 
   sap1_env env;
+  Sap1 regmodel;
+  sap1_frontdoor_handle frontdoor_handle;
 
   virtual clkgen_if clkgen_if;
 
   function new(string name="sap1_base_test", uvm_component parent=null);
     super.new(name, parent);
+    regmodel = new(.name("sap1"), .parent(null));
   endfunction
 
   function void build_phase(uvm_phase phase);
@@ -21,6 +24,8 @@ class sap1_base_test extends uvm_test;
     end
 
     env = sap1_env::type_id::create("sap1_env", this);
+    frontdoor_handle = sap1_frontdoor_handle::type_id::create("sap1_frontdoor_handle");
+
   endfunction
 endclass
 `endif
