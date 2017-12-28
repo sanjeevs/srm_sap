@@ -8,6 +8,15 @@ frontdoor may be avaialalbe only on the root node.
 3. Provide default handles for these policies. like frontdoor, backdoor.  
 4. Locking is not implemented. Not clear on the race conditions 
 
+## Env Setup
+To run the testbench the following envrionment variable must be set.
+*SRM_HOME* : Pointer to the install directory for srm package.
+*SAP_HOME* : Pointer to this directory.
+
+The Makefile uses these 2 environment variable to find all the source files.
+
+A sample file 'my_setup.csh' in this directory sets up my environment.
+
 ## Design
 The design is a chip called 'sap1'. The address map of the chip is shown below.
 ![AddressMap](docs/addr_map.jpg)

@@ -2,13 +2,15 @@
 // Host block of sap1
 //
 
-module host(
+module host (
   input logic clk,
   input logic reset,
-
   interface host_if,
   interface pio_if
 );
+ 
+  parameter HOST_BASE = 32'h0;
+  parameter HOST_SIZE = 32'h1000_0000;
 
   logic [31:0] base_address;
   logic [31:0] range;
@@ -16,8 +18,8 @@ module host(
   // SAP1 address decode is from 0xA000_0000 to 0xB000_0000
   always @(posedge clk) 
     if(reset) begin
-      base_address = 32'hA000_0000;
-      range = 32'h1000_0000;
+      base_address = HOST_BASE;
+      range = HOST_SIZE;
     end
 
   logic valid_dec;

@@ -13,7 +13,7 @@ module tb();
 
   host_if host_if(.clk(clk), .reset(reset));
 
-  sap1 dut(.clk(clk),
+  sap1 #(32'ha000_0000, 32'h1000_0000) dut(.clk(clk),
            .reset(reset),
            .host_if(host_if.slave));
 
