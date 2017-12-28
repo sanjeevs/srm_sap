@@ -31,7 +31,7 @@ class sap1_env extends uvm_env;
 
   function void connect_phase(uvm_phase phase);
     host_bus_adapter.host_sqr = host_agent_inst.sqr;
-    backdoor_adapter.prefix = "dut";
+    backdoor_adapter.prefix = "tb.dut";
   endfunction
 
 

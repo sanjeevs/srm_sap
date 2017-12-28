@@ -7,6 +7,7 @@ class sap1_base_test extends uvm_test;
   sap1_env env;
   Sap1 regmodel;
   sap1_frontdoor_handle frontdoor_handle;
+  sap1_backdoor_handle backdoor_handle;
 
   virtual clkgen_if clkgen_if;
 
@@ -25,7 +26,14 @@ class sap1_base_test extends uvm_test;
 
     env = sap1_env::type_id::create("sap1_env", this);
     frontdoor_handle = sap1_frontdoor_handle::type_id::create("sap1_frontdoor_handle");
+    backdoor_handle = sap1_backdoor_handle::type_id::create("sap1_backdoor_handle");
 
   endfunction
+  
+  function void connect_phase(uvm_phase phase);
+    regmodel.add_adapter(env.host_bus_adapter);
+    regmodel.add_adapter(env.backdoor_adapter);
+  endfunction
+
 endclass
 `endif

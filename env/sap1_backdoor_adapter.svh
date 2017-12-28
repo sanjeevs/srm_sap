@@ -37,6 +37,11 @@ class sap1_backdoor_adapter extends srm_bus_adapter;
       end
     end else begin
       temp = 'h0;
+      status = uvm_hdl_read(path, temp);
+      if(status == 0) begin
+        `uvm_fatal("TbConfigurationError", 
+          $psprintf("Hdl backdoor read failed to path '%s'", path));
+      end
       // {byte3, byte2, byte1, byte0} = [31:0]
       foreach(generic_xact.data[i]) begin
         generic_xact.data[i] = temp[7:0];
