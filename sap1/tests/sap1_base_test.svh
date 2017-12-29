@@ -4,6 +4,7 @@
 class sap1_base_test extends uvm_test;
   `uvm_component_utils(sap1_base_test)
 
+  sap1_env_config env_cfg;
   sap1_env env;
   Sap1 regmodel;
   sap1_frontdoor_handle frontdoor_handle;
@@ -23,6 +24,9 @@ class sap1_base_test extends uvm_test;
       clkgen_if)) begin
       `uvm_fatal(get_full_name(), "Cannot get() interface clkgen_if from uvm_config_db")
     end
+
+    env_cfg = sap1_env_config::type_id::create("sap1_env_config", this);
+    uvm_config_db #(sap1_env_config)::set(this, "*", "sap1_env_config", env_cfg);
 
     env = sap1_env::type_id::create("sap1_env", this);
     frontdoor_handle = sap1_frontdoor_handle::type_id::create("sap1_frontdoor_handle");

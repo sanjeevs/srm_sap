@@ -13,5 +13,6 @@ package sap1_env_pkg;
   `include "sap1_frontdoor_handle.svh"
   `include "sap1_backdoor_handle.svh"
   `include "sap1_srm_reg_sequence.svh"
+  `include "sap1_env_config.svh"
   `include "sap1_env.svh"
 endpackage

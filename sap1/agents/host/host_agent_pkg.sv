@@ -9,6 +9,7 @@ package host_agent_pkg;
   `include "host_seq_lib.svh"
   `include "host_driver.svh"
   `include "host_sequencer.svh"
+  `include "host_agent_config.svh"
   `include "host_agent.svh"
 endpackage
 
