@@ -35,7 +35,7 @@ class sap1_base_test extends uvm_test;
   endfunction
   
   function void connect_phase(uvm_phase phase);
-    regmodel.add_adapter(env.host_bus_adapter);
+    regmodel.add_adapter(env.host_bus_adapter_inst);
     regmodel.add_adapter(env.backdoor_adapter);
   endfunction
 

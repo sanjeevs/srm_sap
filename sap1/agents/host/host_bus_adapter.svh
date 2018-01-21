@@ -1,15 +1,15 @@
 //
 // Bus Adapter to execute transaction on the host agent.
 //
-`ifndef INCLUDED_sap1_host_bus_adapter_svh
-`define INCLUDED_sap1_host_bus_adapter_svh
+`ifndef INCLUDED_host_bus_adapter_svh
+`define INCLUDED_host_bus_adapter_svh
 
-class sap1_host_bus_adapter extends srm_bus_adapter;
+class host_bus_adapter extends srm_bus_adapter;
   host_sequencer host_sqr;
 
-  `uvm_object_utils(sap1_host_bus_adapter)
+  `uvm_object_utils(host_bus_adapter)
     
-  function new(string name="sap1_host_bus_adapter");
+  function new(string name="host_bus_adapter");
     super.new(name);
   endfunction
 

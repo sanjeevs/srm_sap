@@ -1,17 +1,3 @@
-//====================================================================
-//     $Id: //depot/icm/proj/secaes/trunk/verif/verif/secaes/agents/secaes_din/secaes_din_agent.svh#9 $
-// $Author: jscott $
-//
-// Copyright (c) 2014, Juniper Networks, Inc.
-// All rights reserved.
-//
-// Sanjeev Singh, sanjeevs@juniper.net
-//
-// host_agent.svh - 
-//
-// Description: 
-// Agent implements the generic//====================================================================
-
 `ifndef INCLUDED_host_agent 
 `define INCLUDED_host_agent
 class host_agent extends uvm_agent;

@@ -11,7 +11,7 @@ class sap1_env extends uvm_env;
 
   sap1_env_config cfg;
   host_agent host_agent_inst;
-  sap1_host_bus_adapter host_bus_adapter;
+  host_bus_adapter host_bus_adapter_inst;
   sap1_backdoor_adapter backdoor_adapter;
 
   function new(string name="sap1_env", uvm_component parent=null);
@@ -30,14 +30,14 @@ class sap1_env extends uvm_env;
       `uvm_fatal("CONFIG_LOAD", "Cannot get() interface host_if from uvm_config_db")
     end
 
-    host_bus_adapter = sap1_host_bus_adapter::type_id::create("host_bus_adapter", this);
+    host_bus_adapter_inst = host_bus_adapter::type_id::create("host_bus_adapter", this);
     backdoor_adapter = sap1_backdoor_adapter::type_id::create("sap1_backdoor_adapter", this);
 
     `uvm_info(get_full_name(), "Completed env build", UVM_LOW)
   endfunction
 
   function void connect_phase(uvm_phase phase);
-    host_bus_adapter.host_sqr = host_agent_inst.sqr;
+    host_bus_adapter_inst.host_sqr = host_agent_inst.sqr;
     backdoor_adapter.prefix = "tb.dut";
   endfunction
 
