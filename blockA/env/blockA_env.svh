@@ -11,7 +11,6 @@ class blockA_env extends uvm_env;
 
   blockA_env_config cfg;
   pio_agent pio_agent_inst;
-  pio_bus_adapter pio_bus_adapter_inst;
 
   function new(string name="blockA_env", uvm_component parent=null);
     super.new(name, parent);
@@ -29,13 +28,8 @@ class blockA_env extends uvm_env;
       `uvm_fatal("CONFIG_LOAD", "Cannot get() interface pio_if from uvm_config_db")
     end
 
-    pio_bus_adapter_inst = pio_bus_adapter::type_id::create("pio_bus_adapter", this);
 
     `uvm_info(get_full_name(), "Completed env build", UVM_LOW)
-  endfunction
-
-  function void connect_phase(uvm_phase phase);
-    pio_bus_adapter_inst.pio_sqr = pio_agent_inst.sqr;
   endfunction
 
 

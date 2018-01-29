@@ -2,7 +2,7 @@
 # Simple Makefile to run blockA testbench.
 #
 
-VCS = vcs -sverilog -timescale=1ns/1ns +acc+1 +vpi -debug_all\
+VCS = vcs -sverilog -timescale=1ns/1ns +acc +vpi -debug_all\
       +define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR \
       +incdir+$(UVM_HOME)/src $(UVM_HOME)/src/uvm.sv  \
       +incdir+$(SRM_HOME)/src $(SRM_HOME)/src/srm.sv \
@@ -10,6 +10,7 @@ VCS = vcs -sverilog -timescale=1ns/1ns +acc+1 +vpi -debug_all\
       +incdir+$(SAP_HOME)/blockA/env +incdir+$(SAP_HOME)/blockA/tests \
       +incdir+$(SAP_HOME)/blockA/regmodel \
       +incdir+$(SAP_HOME)/blockA/sequences \
+      +incdir+$(SAP_HOME)/blockA/backdoor \
       $(UVM_HOME)/src/dpi/uvm_dpi.cc -CFLAGS -DVCS
 
 SIMV = simv -l test.log
@@ -22,6 +23,7 @@ TB = $(SAP_HOME)/blockA/tb/clkgen_if.sv \
      $(SAP_HOME)/agents/pio/pio_agent_pkg.sv \
      $(SAP_HOME)/blockA/regmodel/blockA_srm_model_pkg.sv \
      $(SAP_HOME)/blockA/sequences/blockA_srm_reg_sequences_pkg.sv \
+     $(SAP_HOME)/blockA/backdoor/blockA_backdoor_pkg.sv \
      $(SAP_HOME)/blockA/env/blockA_env_pkg.sv \
      $(SAP_HOME)/blockA/tests/blockA_test_pkg.sv
 

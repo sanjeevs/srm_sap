@@ -11,6 +11,9 @@ class blockA_base_test extends uvm_test;
   blockA_env env;
   BlockA regmodel;
   pio_bus_handle pio_handle;
+  
+  blockA_backdoor_adapter backdoor_adapter;
+  blockA_backdoor_handle backdoor_handle;
 
   virtual clkgen_if clkgen_if;
 
@@ -37,10 +40,14 @@ class blockA_base_test extends uvm_test;
     env = blockA_env::type_id::create("blockA_env", this);
 
     pio_handle = pio_bus_handle::type_id::create("pio_bus_handle", this);
+    backdoor_adapter = blockA_backdoor_adapter::type_id::create("blockA_backdoor_adapter", this);
+    backdoor_adapter.prefix = "tb.dut";
+    backdoor_handle = blockA_backdoor_handle::type_id::create("blockA_backdoor_handle", this);
   endfunction
   
   function void connect_phase(uvm_phase phase);
     regmodel.add_adapter(env.pio_agent_inst.adapter);
+    regmodel.r1_reg_inst.add_adapter(backdoor_adapter);
   endfunction
 
   function int get_num_errors();
