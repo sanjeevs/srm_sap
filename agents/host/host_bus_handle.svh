@@ -1,8 +1,11 @@
-`ifndef INCLUDED_sap1_frontdoor_handle_svh
-`define INCLUDED_sap1_frontdoor_handle_svh
+//
+// Handle to select the host adapter.
+//
+`ifndef INCLUDED_host_bus_handle_svh
+`define INCLUDED_host_bus_handle_svh
 
 //
-// Always use the host front door to access the register model.
+// Select the host adapter.
 //
 class host_search_frontdoor extends srm_search_adapter;
   `uvm_object_utils(host_search_frontdoor)
@@ -20,11 +23,11 @@ class host_search_frontdoor extends srm_search_adapter;
   endfunction
 endclass
 
-class sap1_frontdoor_handle extends srm_base_handle;
+class host_bus_handle extends srm_base_handle;
   host_search_frontdoor search_frontdoor;
-  `uvm_object_utils(sap1_frontdoor_handle)
+  `uvm_object_utils(host_bus_handle)
 
-  function new(string name="sap1_frontdoor_handle");
+  function new(string name="host_bus_handle");
     super.new(name);
     search_frontdoor = host_search_frontdoor::type_id::create("host_search_frontdoor");
     initialize(.search_adapter(search_frontdoor), .addr_map_name("default"));

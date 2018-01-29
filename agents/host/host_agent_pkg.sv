@@ -11,7 +11,8 @@ package host_agent_pkg;
   `include "host_driver.svh"
   `include "host_sequencer.svh"
   `include "host_agent_config.svh"
-  `include "host_agent.svh"
   `include "host_bus_adapter.svh"
+  `include "host_bus_handle.svh"
+  `include "host_agent.svh"
 endpackage
 

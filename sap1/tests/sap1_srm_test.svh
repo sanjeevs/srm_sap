@@ -13,27 +13,18 @@ class sap1_srm_test extends sap1_base_test;
   endfunction
 
   task run_phase(uvm_phase phase);
-    sap1_srm_reg_sequence reg_seq;
-    reg_seq = sap1_srm_reg_sequence::type_id::create("sap1_srm_reg_sequence");
+    blockA_srm_reg_sequence reg_seq;
+
+    reg_seq = blockA_srm_reg_sequence::type_id::create("blockA_srm_reg_sequence");
     phase.raise_objection(.obj(this));
-    #100ns;    // Wait for reset to be over
-    `uvm_info(get_full_name(), "Starting sap1_srm_test after reset", UVM_LOW);
+    wait_for_reset();
 
-    `uvm_info(get_full_name(), "Using Frontdoor Access for Register", UVM_LOW);
-    reg_seq.initialize(.regmodel(regmodel), .handle(frontdoor_handle));
+    reg_seq.initialize(.regmodel(regmodel.blockA), .handle(host_handle));
     reg_seq.start(null);
 
-    `uvm_info(get_full_name(), "Using Backdoor Access for Register", UVM_LOW);
-    reg_seq.initialize(.regmodel(regmodel), .handle(backdoor_handle));
-    reg_seq.start(null);
     phase.drop_objection(.obj(this));
 
   endtask
-
-  function void build_phase(uvm_phase phase);
-    `uvm_info(get_full_name(), "Building test uvm_base_test", UVM_NONE)
-    super.build_phase(phase);
-  endfunction
 
 endclass
 `endif

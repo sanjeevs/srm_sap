@@ -27,7 +27,7 @@ TB = $(SAP_HOME)/blockA/tb/clkgen_if.sv \
      $(SAP_HOME)/blockA/env/blockA_env_pkg.sv \
      $(SAP_HOME)/blockA/tests/blockA_test_pkg.sv
 
-TESTNAME = blockA_reg_test
+TESTNAME = blockA_srm_test
 
 comp_vcs:
 	$(VCS) $(INCDIR) $(DESIGN) $(TB) 

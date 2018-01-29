@@ -12,5 +12,5 @@ package blockA_test_pkg;
   import blockA_backdoor_pkg::*;
   `include "blockA_base_test.svh"
   `include "blockA_xact_test.svh"
-  `include "blockA_reg_test.svh"
+  `include "blockA_srm_test.svh"
 endpackage

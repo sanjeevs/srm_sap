@@ -1,3 +1,6 @@
+//
+// Base test class for sap1 testbench.
+//
 `ifndef INCLUDED_sap1_base_test
 `define INCLUDED_sap1_base_test
 
@@ -7,8 +10,7 @@ class sap1_base_test extends uvm_test;
   sap1_env_config env_cfg;
   sap1_env env;
   Sap1 regmodel;
-  sap1_frontdoor_handle frontdoor_handle;
-  sap1_backdoor_handle backdoor_handle;
+  host_bus_handle host_handle;
 
   virtual clkgen_if clkgen_if;
 
@@ -16,6 +18,10 @@ class sap1_base_test extends uvm_test;
     super.new(name, parent);
     regmodel = new(.name("sap1"), .parent(null));
   endfunction
+
+  virtual task wait_for_reset();
+    repeat(10) @(clkgen_if.clk);
+  endtask
 
   function void build_phase(uvm_phase phase);
     `uvm_info(get_full_name(), "Building test uvm_base_test", UVM_NONE)
@@ -29,15 +35,31 @@ class sap1_base_test extends uvm_test;
     uvm_config_db #(sap1_env_config)::set(this, "*", "sap1_env_config", env_cfg);
 
     env = sap1_env::type_id::create("sap1_env", this);
-    frontdoor_handle = sap1_frontdoor_handle::type_id::create("sap1_frontdoor_handle");
-    backdoor_handle = sap1_backdoor_handle::type_id::create("sap1_backdoor_handle");
+    host_handle = host_bus_handle::type_id::create("host_bus_handle");
 
   endfunction
   
   function void connect_phase(uvm_phase phase);
-    regmodel.add_adapter(env.host_bus_adapter_inst);
-    regmodel.add_adapter(env.backdoor_adapter);
+    regmodel.add_adapter(env.host_agent_inst.adapter);
   endfunction
+
+  function int get_num_errors();
+    uvm_report_server server = get_report_server();
+    return server.get_severity_count(UVM_ERROR);
+  endfunction
+
+  function void report_phase(uvm_phase phase);
+    $display("\n");
+    $display("====================================================");
+    if(get_num_errors() == 0) begin
+      $display("\tTEST PASSED.");
+    end else begin
+      $display("\tTEST FAILED. ErrCnt=%0d", get_num_errors());
+    end
+    $display("====================================================");
+    $display("\n");
+  endfunction
+
 
 endclass
 `endif

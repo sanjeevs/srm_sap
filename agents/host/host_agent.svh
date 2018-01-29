@@ -1,3 +1,9 @@
+//
+// Host agent for driving xact on the host bus.
+//
+// Generic uvm agent with adapter that converts the generic
+// srm xact into a host xact.
+//
 `ifndef INCLUDED_host_agent 
 `define INCLUDED_host_agent
 class host_agent extends uvm_agent;
@@ -11,6 +17,7 @@ class host_agent extends uvm_agent;
   host_driver drv;
   host_sequencer sqr;
   host_agent_config cfg;
+  host_bus_adapter adapter; // Adapter to convert srm xact into host xact.
 
   // Standard UVM methods
   extern function new(string name="host_agent", uvm_component parent = null);
@@ -31,6 +38,7 @@ function void host_agent::build_phase(uvm_phase phase);
   if(cfg.active == UVM_ACTIVE) begin
     drv = host_driver::type_id::create("host_driver", this);
     sqr = host_sequencer::type_id::create("host_sequencer", this);
+    adapter = host_bus_adapter::type_id::create("host_bus_adapter", this);
   end
 endfunction
 
@@ -39,6 +47,7 @@ function void host_agent::connect_phase(uvm_phase phase);
     `uvm_info(get_full_name(), "Connecting up host_agent", UVM_NONE)
     drv.seq_item_port.connect(sqr.seq_item_export);
     drv.vif = vif;
+    adapter.host_sqr = sqr;
   end
 endfunction
 

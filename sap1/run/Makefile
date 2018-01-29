@@ -9,6 +9,7 @@ VCS = vcs -sverilog -timescale=1ns/1ns +acc +vpi -debug_all\
       +incdir+$(SAP_HOME)/sap1/tb +incdir+$(SAP_HOME)/agents/host \
 	  +incdir+$(SAP_HOME)/sap1/env +incdir+$(SAP_HOME)/sap1/tests \
       +incdir+$(SAP_HOME)/blockA/regmodel \
+      +incdir+$(SAP_HOME)/blockA/sequences \
       +incdir+$(SAP_HOME)/sap1/regmodel \
       $(UVM_HOME)/src/dpi/uvm_dpi.cc -CFLAGS -DVCS
 
@@ -25,6 +26,7 @@ TB = $(SAP_HOME)/sap1/tb/tb.sv \
      $(SAP_HOME)/agents/host/host_agent_pkg.sv \
      $(SAP_HOME)/blockA/regmodel/blockA_srm_model_pkg.sv \
      $(SAP_HOME)/sap1/regmodel/sap1_srm_model_pkg.sv \
+     $(SAP_HOME)/blockA/sequences/blockA_srm_reg_sequences_pkg.sv \
      $(SAP_HOME)/sap1/env/sap1_env_pkg.sv \
      $(SAP_HOME)/sap1/tests/sap1_test_pkg.sv
 
