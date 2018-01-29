@@ -1,9 +1,9 @@
 //
-// BlockX of sap1
+// BlockA
 // Contains a single register and a 1K table.
 //
 
-module blockX(
+module blockA(
   input logic clk,
   input logic reset,
 
