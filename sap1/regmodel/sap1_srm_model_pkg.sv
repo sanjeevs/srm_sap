@@ -9,6 +9,7 @@ package sap1_srm_model_pkg;
   `include "uvm_macros.svh"
   import srm_pkg::*;
 
+  import blockA_srm_model_pkg::*;
   `include "sap1_srm_model.svh"
 endpackage
 

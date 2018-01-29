@@ -19,7 +19,7 @@ module sap1 (
     .pio_if(pio_if.master));
 
 
-  blockX blockX(
+  blockA blockA(
     .clk(clk),
     .reset(reset),
     .pio_if(pio_if.slave));

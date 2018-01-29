@@ -12,6 +12,7 @@ package pio_agent_pkg;
   `include "pio_sequencer.svh"
   `include "pio_agent_config.svh"
   `include "pio_bus_adapter.svh"
+  `include "pio_bus_handle.svh"
   `include "pio_agent.svh"
 endpackage
 

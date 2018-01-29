@@ -2,8 +2,7 @@
 // Pio agent for driving xact on the pio bus.
 //
 // A generic uvm agent + pio_bus_adapter that converts the
-// generic srm xact into a pio xact. This allows the agent to be reused unchanged
-// in higher level hierarchy.
+// generic srm xact into a pio xact. 
 //
 `ifndef INCLUDED_pio_agent 
 `define INCLUDED_pio_agent
@@ -39,6 +38,8 @@ function void pio_agent::build_phase(uvm_phase phase);
   if(cfg.active == UVM_ACTIVE) begin
     drv = pio_driver::type_id::create("pio_driver", this);
     sqr = pio_sequencer::type_id::create("pio_sequencer", this);
+
+    // Name of the adapter is used by the handle to identify and select.
     adapter = pio_bus_adapter::type_id::create("pio_bus_adapter", this);
   end
 endfunction
@@ -48,6 +49,7 @@ function void pio_agent::connect_phase(uvm_phase phase);
     `uvm_info(get_full_name(), "Connecting up pio_agent", UVM_NONE)
     drv.seq_item_port.connect(sqr.seq_item_export);
     drv.vif = vif;
+    adapter.pio_sqr = sqr;  // Connect the adapter to the sequencer.
   end
 endfunction
 

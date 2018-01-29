@@ -27,7 +27,7 @@ class sap1_backdoor_adapter extends srm_bus_adapter;
     int status;
     string path;
 
-    path = {prefix, ".blockX.r1"}; 
+    path = {prefix, ".blockA.r1"}; 
     if(generic_xact.kind == SRM_WRITE) begin
       temp = generic_xact_to_bus32(generic_xact);
       status = uvm_hdl_deposit(path, temp);
