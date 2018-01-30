@@ -22,6 +22,10 @@ class sap1_srm_test extends sap1_base_test;
     reg_seq.initialize(.regmodel(regmodel.blockA), .handle(host_handle));
     reg_seq.start(null);
 
+     `uvm_info(get_full_name(), "Running backdoortraffic", UVM_NONE);
+    reg_seq.handle = backdoor_handle;
+    reg_seq.start(null);
+ 
     phase.drop_objection(.obj(this));
 
   endtask

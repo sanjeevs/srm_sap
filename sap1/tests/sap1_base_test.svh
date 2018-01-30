@@ -12,6 +12,9 @@ class sap1_base_test extends uvm_test;
   Sap1 regmodel;
   host_bus_handle host_handle;
 
+  blockA_backdoor_adapter backdoor_adapter;
+  blockA_backdoor_handle backdoor_handle;
+
   virtual clkgen_if clkgen_if;
 
   function new(string name="sap1_base_test", uvm_component parent=null);
@@ -37,10 +40,15 @@ class sap1_base_test extends uvm_test;
     env = sap1_env::type_id::create("sap1_env", this);
     host_handle = host_bus_handle::type_id::create("host_bus_handle");
 
+    backdoor_adapter = blockA_backdoor_adapter::type_id::create("blockA_backdoor_adapter", this);
+    backdoor_adapter.prefix = "tb.dut.blockA";
+    backdoor_handle = blockA_backdoor_handle::type_id::create("blockA_backdoor_handle", this);
+
   endfunction
   
   function void connect_phase(uvm_phase phase);
     regmodel.add_adapter(env.host_agent_inst.adapter);
+    regmodel.blockA.r1_reg_inst.add_adapter(backdoor_adapter);
   endfunction
 
   function int get_num_errors();

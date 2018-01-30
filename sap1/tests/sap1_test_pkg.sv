@@ -8,7 +8,7 @@ package sap1_test_pkg;
   import sap1_env_pkg::*;
   import host_agent_pkg::*;
   import sap1_srm_model_pkg::*;
-  
+  import blockA_backdoor_pkg::*;  
   import blockA_srm_reg_sequences_pkg::*;
 
   `include "sap1_base_test.svh"
