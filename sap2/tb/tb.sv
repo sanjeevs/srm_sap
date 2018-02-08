@@ -13,7 +13,7 @@ module tb();
 
   host_if host_if(.clk(clk), .reset(reset));
 
-  bind blockA : sap2.sap1_0.blockA pio_wrapper_if pio_wrapper_bind (
+  bind pio_wrapper_if pio_wrapper_bind pio_wrapper_bind (
     .clk(clk),
     .reset(reset),
     .cmd_vld_net(cmd_vld),
@@ -23,8 +23,8 @@ module tb();
     .data_r(data_r),
     .rd_vld(rd_vld));
 
-  virtual pio_if pio_if = sap2.sap1_0.blockA.pio_wrapper_bind.intf;
-
+  virtual pio_if pio_0_if = sap2.sap1_0.blockA.pio_wrapper_bind.intf;
+  virtual pio_if pio_1_if = sap2.sap1_1.blockA.pio_wrapper_bind.intf;
 
   sap2 dut(.clk(clk),
            .reset(reset),
@@ -39,7 +39,8 @@ module tb();
 
   initial begin
     uvm_config_db#(virtual host_if)::set(uvm_root::get(), "*", "host_if", host_if);
-    uvm_config_db#(virtual pio_if)::set(uvm_root::get(), "*", "pio_if", pio_if);
+    uvm_config_db#(virtual pio_if)::set(uvm_root::get(), "*", "pio_0_if", pio_0_if);
+    uvm_config_db#(virtual pio_if)::set(uvm_root::get(), "*", "pio_1_if", pio_1_if);
     uvm_config_db#(virtual clkgen_if)::set(uvm_root::get(), "*", "clkgen_if", clkgen_if);
   end
 

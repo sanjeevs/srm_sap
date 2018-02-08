@@ -24,13 +24,20 @@ class sap2_srm_test extends sap2_base_test;
 
     reg_seq.initialize(.regmodel(regmodel.sap1_1.blockA), .handle(host_handle));
     reg_seq.start(null);
-    // `uvm_info(get_full_name(), "Running backdoor adapter", UVM_NONE);
-    //reg_seq.handle = backdoor_handle;
-    //reg_seq.start(null);
+    
+    `uvm_info(get_full_name(), "Running backdoor adapter on instance sap1_0", UVM_NONE);
+    backdoor_adapter.prefix = "tb.dut.sap1_0.blockA"; 
+    reg_seq.initialize(.regmodel(regmodel.sap1_1.blockA), .handle(backdoor_handle));
+    reg_seq.start(null);
  
-    // `uvm_info(get_full_name(), "Running pio adapter", UVM_NONE);
-    //reg_seq.handle = pio_handle;
-    //reg_seq.start(null);
+    `uvm_info(get_full_name(), "Running backdoor adapter on instance sap1_1", UVM_NONE);
+    backdoor_adapter.prefix = "tb.dut.sap1_1.blockA"; 
+    reg_seq.initialize(.regmodel(regmodel.sap1_1.blockA), .handle(backdoor_handle));
+    reg_seq.start(null);
+
+    `uvm_info(get_full_name(), "Running pio adapter on instance sap1_0", UVM_NONE);
+    reg_seq.initialize(.regmodel(regmodel.sap1_1.blockA), .handle(pio_0_handle));
+    reg_seq.start(null);
 
     repeat(10) @(posedge clkgen_if.clk);
     phase.drop_objection(.obj(this));

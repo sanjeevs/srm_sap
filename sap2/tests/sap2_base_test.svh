@@ -11,7 +11,7 @@ class sap2_base_test extends uvm_test;
   sap2_env env;
   Sap2 regmodel;
   host_bus_handle host_handle;
-  pio_bus_handle pio_handle;
+  pio_bus_handle pio_0_handle;
 
   blockA_backdoor_adapter backdoor_adapter;
   blockA_backdoor_handle backdoor_handle;
@@ -40,10 +40,10 @@ class sap2_base_test extends uvm_test;
 
     env = sap2_env::type_id::create("sap2_env", this);
     host_handle = host_bus_handle::type_id::create("host_bus_handle");
-    pio_handle = pio_bus_handle::type_id::create("pio_bus_handle");
+    pio_0_handle = pio_bus_handle::type_id::create("pio_0_handle");
 
     backdoor_adapter = blockA_backdoor_adapter::type_id::create("blockA_backdoor_adapter", this);
-    backdoor_adapter.prefix = "tb.dut.blockA";
+    backdoor_adapter.prefix = "tb.dut.sap1_0.blockA"; // Default behavior
     backdoor_handle = blockA_backdoor_handle::type_id::create("blockA_backdoor_handle", this);
 
   endfunction
@@ -51,7 +51,9 @@ class sap2_base_test extends uvm_test;
   function void connect_phase(uvm_phase phase);
     regmodel.add_adapter(env.host_agent_inst.adapter);
     regmodel.sap1_0.blockA.r1_reg_inst.add_adapter(backdoor_adapter);
-    regmodel.sap1_0.blockA.add_adapter(env.pio_agent_inst.adapter);
+    regmodel.sap1_1.blockA.r1_reg_inst.add_adapter(backdoor_adapter);
+    regmodel.sap1_0.blockA.add_adapter(env.pio_agent_0_inst.adapter);
+    regmodel.sap1_1.blockA.add_adapter(env.pio_agent_1_inst.adapter);
   endfunction
 
   function int get_num_errors();
