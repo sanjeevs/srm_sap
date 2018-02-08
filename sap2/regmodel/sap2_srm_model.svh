@@ -14,11 +14,11 @@
     super.new(name, parent);
     sap1_0 = new(.name("sap1_0_inst"), .parent(this));
     add_child(sap1_0);
-    sap1_0.set_offset("default", .offset('ha000_0000));
+    sap1_0.set_offset("default", .offset('h0000_0000));
 
     sap1_1 = new(.name("sap2_0_inst"), .parent(this));
     add_child(sap1_1);
-    sap1_1.set_offset("default", .offset('hb000_0000));
+    sap1_1.set_offset("default", .offset('h1000_0000));
   endfunction
 
   endclass: Sap2

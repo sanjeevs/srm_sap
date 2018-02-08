@@ -22,6 +22,8 @@ class sap2_srm_test extends sap2_base_test;
     reg_seq.initialize(.regmodel(regmodel.sap1_0.blockA), .handle(host_handle));
     reg_seq.start(null);
 
+    reg_seq.initialize(.regmodel(regmodel.sap1_1.blockA), .handle(host_handle));
+    reg_seq.start(null);
     // `uvm_info(get_full_name(), "Running backdoor adapter", UVM_NONE);
     //reg_seq.handle = backdoor_handle;
     //reg_seq.start(null);
