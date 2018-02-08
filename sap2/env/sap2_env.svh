@@ -11,8 +11,7 @@ class sap2_env extends uvm_env;
 
   sap2_env_config cfg;
   host_agent host_agent_inst;
-  sap2_host_bus_adapter host_bus_adapter;
-  sap2_backdoor_adapter backdoor_adapter;
+  pio_agent pio_agent_inst;
 
   function new(string name="sap2_env", uvm_component parent=null);
     super.new(name, parent);
@@ -30,15 +29,14 @@ class sap2_env extends uvm_env;
       `uvm_fatal("CONFIG_LOAD", "Cannot get() interface host_if from uvm_config_db")
     end
 
-    host_bus_adapter = sap2_host_bus_adapter::type_id::create("host_bus_adapter", this);
-    backdoor_adapter = sap2_backdoor_adapter::type_id::create("sap2_backdoor_adapter", this);
+    uvm_config_db#(pio_agent_config)::set(this, "pio_agent*", "pio_agent_config", cfg.pio_agent_cfg);
+    pio_agent_inst = pio_agent::type_id::create("pio_agent", this);
+    if(!uvm_config_db#(virtual pio_if)::get(this, "", "pio_if", pio_agent_inst.vif)) begin
+      `uvm_fatal("CONFIG_LOAD", "Cannot get() interface pio_if from uvm_config_db")
+    end
+
 
     `uvm_info(get_full_name(), "Completed env build", UVM_LOW)
-  endfunction
-
-  function void connect_phase(uvm_phase phase);
-    host_bus_adapter.host_sqr = host_agent_inst.sqr;
-    backdoor_adapter.prefix = "tb.dut";
   endfunction
 
 

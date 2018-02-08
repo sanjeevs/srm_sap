@@ -26,12 +26,12 @@ module sap2(
                                                : host_inst2_if.data_r;
   assign host_if.rd_vld = host_inst1_if.rd_vld | host_inst2_if.rd_vld;
 
-  sap1 #(32'ha000_0000, 32'h1000_0000) sap1_inst1(
+  sap1 #(32'ha000_0000, 32'h1000_0000) sap1_0(
     .clk(clk),
     .reset(reset),
     .host_if(host_inst1_if.slave));
 
-  sap1 #(32'hb000_0000, 32'h1000_0000) sap1_inst2(
+  sap1 #(32'hb000_0000, 32'h1000_0000) sap1_1(
     .clk(clk),
     .reset(reset),
     .host_if(host_inst2_if.slave));

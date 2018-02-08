@@ -12,7 +12,7 @@
   logic        rd_vld;// Valid read data on the bus.
 
 interface pio_wrapper_if(input clk,
-                         input rst,
+                         input reset,
                          output wire cmd_vld_net,
                          output wire [15:0] addr_net,
                          output wire [31:0] data_w_net,

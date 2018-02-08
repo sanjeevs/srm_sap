@@ -7,7 +7,8 @@ VCS = vcs -sverilog -timescale=1ns/1ns +acc +vpi -debug_all\
       +incdir+$(UVM_HOME)/src $(UVM_HOME)/src/uvm.sv  \
       +incdir+$(SRM_HOME)/src $(SRM_HOME)/src/srm.sv \
       +incdir+$(SAP_HOME)/sap1/tb +incdir+$(SAP_HOME)/agents/host \
-	  +incdir+$(SAP_HOME)/sap1/env +incdir+$(SAP_HOME)/sap1/tests \
+      +incdir+$(SAP_HOME)/agents/pio \
+      +incdir+$(SAP_HOME)/sap1/env +incdir+$(SAP_HOME)/sap1/tests \
       +incdir+$(SAP_HOME)/blockA/regmodel \
       +incdir+$(SAP_HOME)/blockA/sequences \
       +incdir+$(SAP_HOME)/blockA/backdoor \
@@ -19,12 +20,14 @@ SIMV = simv -l test.log
 DESIGN = $(SAP_HOME)/sap1/dut/clkgen_if.sv \
          $(SAP_HOME)/agents/host/host_if.sv \
          $(SAP_HOME)/agents/pio/pio_if.sv  \
-	     $(SAP_HOME)/sap1/dut/host.sv   \
-	     $(SAP_HOME)/blockA/dut/blockA.sv \
-	     $(SAP_HOME)/sap1/dut/sap1.sv
+         $(SAP_HOME)/agents/pio/pio_wrapper_if.sv  \
+	 $(SAP_HOME)/sap1/dut/host.sv   \
+	 $(SAP_HOME)/blockA/dut/blockA.sv \
+	 $(SAP_HOME)/sap1/dut/sap1.sv
 
 TB = $(SAP_HOME)/sap1/tb/tb.sv \
      $(SAP_HOME)/agents/host/host_agent_pkg.sv \
+     $(SAP_HOME)/agents/pio/pio_agent_pkg.sv \
      $(SAP_HOME)/blockA/regmodel/blockA_srm_model_pkg.sv \
      $(SAP_HOME)/sap1/regmodel/sap1_srm_model_pkg.sv \
      $(SAP_HOME)/blockA/sequences/blockA_srm_reg_sequences_pkg.sv \
