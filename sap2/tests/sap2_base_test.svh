@@ -12,6 +12,7 @@ class sap2_base_test extends uvm_test;
   Sap2 regmodel;
   host_bus_handle host_handle;
   pio_bus_handle pio_0_handle;
+  pio_bus_handle pio_1_handle;
 
   blockA_backdoor_adapter backdoor_adapter;
   blockA_backdoor_handle backdoor_handle;
@@ -41,6 +42,7 @@ class sap2_base_test extends uvm_test;
     env = sap2_env::type_id::create("sap2_env", this);
     host_handle = host_bus_handle::type_id::create("host_bus_handle");
     pio_0_handle = pio_bus_handle::type_id::create("pio_0_handle");
+    pio_1_handle = pio_bus_handle::type_id::create("pio_1_handle");
 
     backdoor_adapter = blockA_backdoor_adapter::type_id::create("blockA_backdoor_adapter", this);
     backdoor_adapter.prefix = "tb.dut.sap1_0.blockA"; // Default behavior
