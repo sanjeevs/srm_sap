@@ -19,8 +19,9 @@ class blockA_srm_reg_sequence extends uvm_sequence;
   endfunction
 
   virtual task body();
-    `uvm_info(get_full_name(), "Test Wr-Rd 0xdeadbeef to r1_reg", UVM_LOW);
-    exp_data = 32'hdeadbeef;
+    exp_data = $urandom;
+    `uvm_info(get_full_name(), 
+      $psprintf("Test Wr-Rd 0x%0x to r1_reg", exp_data), UVM_LOW);
     regmodel.r1_reg_inst.write(handle, exp_data);
 
     `uvm_info(get_full_name(), "Starting blockA_srm_reg read", UVM_LOW);
