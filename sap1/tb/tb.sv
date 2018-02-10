@@ -13,15 +13,15 @@ module tb();
 
   host_if host_if(.clk(clk), .reset(reset));
 
-  bind blockA : sap1.blockA pio_wrapper_if pio_wrapper_bind (
+  bind blockA pio_wrapper_if pio_wrapper_bind (
     .clk(clk),
     .reset(reset),
-    .cmd_vld_net(cmd_vld),
-    .addr_net(addr),
-    .data_w_net(data_w),
-    .rw_net(rw),
-    .data_r(data_r),
-    .rd_vld(rd_vld));
+    .cmd_vld_net(pio_if.cmd_vld),
+    .addr_net(pio_if.addr),
+    .data_w_net(pio_if.data_w),
+    .rw_net(pio_if.rw),
+    .data_r(pio_if.data_r),
+    .rd_vld(pio_if.rd_vld));
 
   virtual pio_if pio_if = sap1.blockA.pio_wrapper_bind.intf;
 

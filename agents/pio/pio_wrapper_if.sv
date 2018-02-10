@@ -4,13 +4,6 @@
 // for testbenches where the RTL is also driving the interface.
 //
 
-  logic cmd_vld;      // 1- command valid.
-  logic [15:0] addr;  // Address valid with cmd_vld
-  logic [31:0] data_w;// Write data valid with cmd_vld and rw=1
-  logic        rw;    // 0-Read, 1-Write
-  logic [31:0] data_r;// Return read data.
-  logic        rd_vld;// Valid read data on the bus.
-
 interface pio_wrapper_if(input clk,
                          input reset,
                          output wire cmd_vld_net,

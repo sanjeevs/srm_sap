@@ -30,13 +30,13 @@ class sap2_env extends uvm_env;
       `uvm_fatal("CONFIG_LOAD", "Cannot get() interface host_if from uvm_config_db")
     end 
 
-    uvm_config_db#(pio_agent_config)::set(this, "pio_agent_0*", "pio_agent_0_config", cfg.pio_agent_0_cfg);
+    uvm_config_db#(pio_agent_config)::set(this, "pio_agent_0*", "pio_agent_config", cfg.pio_agent_0_cfg);
     pio_agent_0_inst = pio_agent::type_id::create("pio_agent_0", this);
     if(!uvm_config_db#(virtual pio_if)::get(this, "", "pio_0_if", pio_agent_0_inst.vif)) begin
       `uvm_fatal("CONFIG_LOAD", "Cannot get() interface pio_if from uvm_config_db")
     end
 
-    uvm_config_db#(pio_agent_config)::set(this, "pio_agent_1*", "pio_agent_1_config", cfg.pio_agent_1_cfg);
+    uvm_config_db#(pio_agent_config)::set(this, "pio_agent_1*", "pio_agent_config", cfg.pio_agent_1_cfg);
     pio_agent_1_inst = pio_agent::type_id::create("pio_agent_1", this);
     if(!uvm_config_db#(virtual pio_if)::get(this, "", "pio_1_if", pio_agent_1_inst.vif)) begin
       `uvm_fatal("CONFIG_LOAD", "Cannot get() interface pio_if from uvm_config_db")
