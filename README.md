@@ -4,17 +4,15 @@ The *SRM* package provides several advantages over the *uvm_reg* package that is
 
 Details about the designs and testbenches can be found [here](http://github.com/sanjeevs/srm_sap/wiki)
 
-To run the demo, download the tar file from the [release area](https://github.com/sanjeevs/srm_sap/releases) and follow the instructions below.
-
 ## Prerequisites
-Running the demo requires that you have already installed.  
-1. Verilog Simulator like vcs or ncsim.  
+Running the demo requires that you have already installed the following software.  
+1. Recent version of Verilog Simulator like vcs. I have tested it with vcs/2014.03-SP-3
 
 2. [UVM](http://accellera.org/downloads/standards/uvm)  
-Ensure that the env variable *UVM_HOME* is setup correctly to the installation directory.  
+Ensure that the env variable *UVM_HOME* is pointing to the installation directory.  
 
 3. [Simple Reg Model](https://github.com/Juniper/simple_reg_model)   
-Ensure that the env variable *SRM_HOME* is setup correctly to the installation directory.  
+Ensure that the env variable *SRM_HOME* is pointing to the installation directory.  
 
 ## Installation
 Download the tar file from  [release area](https://github.com/sanjeevs/srm_sap/releases).  
@@ -22,8 +20,8 @@ Say the tar file is srm_sap-0.1-alpha.tar.gz
 Untar and setup the env variable *SAP_HOME*
 
 ```
-  tar xzvf srm_sap-0.1.tar.gz
-  cd srm_sap-0.1
+  tar xvzf srm_sap-0.1.tar.gz
+  cd srm_sap-0.1-alpha
   setenv SAP_HOME `pwd`   // For CSH
   export SAP_HOME=`pwd`   // For Bash
 ```
