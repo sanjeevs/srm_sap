@@ -9,10 +9,20 @@ Running the demo requires that you have already installed the following software
 1. Recent version of Verilog Simulator like vcs. I have tested it with vcs/2014.03-SP-3
 
 2. [UVM](http://accellera.org/downloads/standards/uvm)  
-Ensure that the env variable *UVM_HOME* is pointing to the installation directory.  
+Ensure that the env variable *UVM_HOME* is pointing to the installation directory like below.
+```
+>ls $UVM_HOME
+bin  docs  examples  LICENSE.txt  README.txt  release-notes.txt  src  UVM_Reference.html
+
+```
 
 3. [Simple Reg Model](https://github.com/Juniper/simple_reg_model)   
-Ensure that the env variable *SRM_HOME* is pointing to the installation directory.  
+Ensure that the env variable *SRM_HOME* is pointing to the installation directory. 
+```
+>ls $SRM_HOME
+examples  License.txt  README.txt  src  SRM_Reference.html
+
+```
 
 ## Installation
 Download the tar file from  [release area](https://github.com/sanjeevs/srm_sap/releases).  
@@ -24,6 +34,12 @@ Untar and setup the env variable *SAP_HOME*
   cd srm_sap-0.1-alpha
   setenv SAP_HOME `pwd`   // For CSH
   export SAP_HOME=`pwd`   // For Bash
+```
+At this point the following should be true.
+```
+>ls $SAP_HOME
+agents  blockA  docs  my_setup.csh  notes.md  README.md  sap1  sap2
+
 ```
 
 ## Running blockA testbench
