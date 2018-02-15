@@ -1,6 +1,17 @@
 #
 # Simple Makefile to run blockA testbench.
 #
+ifndef UVM_HOME
+  $(error UVM_HOME is undefied. Point it to install dir for uvm package)
+endif
+
+ifndef SRM_HOME
+  $(error SRM_HOME is undefied. Point it to install dir for simple_reg_model)
+endif
+
+ifndef SAP_HOME
+  $(error SAP_HOME is undefied. Point it to this installation dir)
+endif
 
 VCS = vcs -sverilog -timescale=1ns/1ns +acc +vpi -debug_all\
       +define+UVM_OBJECT_MUST_HAVE_CONSTRUCTOR \
