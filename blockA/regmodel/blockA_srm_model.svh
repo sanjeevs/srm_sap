@@ -45,12 +45,77 @@ class BlockA extends srm_node;
 
   endclass: r1_reg
 
+  //------------------------------------------------------
+  // Table t1 
+  //------------------------------------------------------
+  typedef struct packed {
+    reg[31:0] field0;
+  } t1_struct_t; 
+
+  // Constraint Class
+  class t1_constr extends uvm_object; 
+     `uvm_object_utils(t1_constr) 
+
+     rand bit[31:0] field0; 
+ 
+     function new(string name="t1_constr"); 
+       super.new(name); 
+     endfunction 
+
+     function t1_struct_t get_data(); 
+       t1_struct_t d; 
+       d.field0 = field0;
+ 
+     endfunction
+  endclass: t1_constr
+
+  class t1_table extends srm_table#(t1_struct_t);
+
+    // Entry in the table.
+    class t1_entry extends srm_table_entry#(t1_struct_t);
+      srm_field#(bit[31:0]) field;
+
+      function new(string name, srm_node parent, srm_addr_t index=-1);
+        super.new(name, parent, index);
+        field = new(.name("field"), .parent(this), .n_bits(32), .lsb_pos(0),
+                  .volatile(0));
+        add_field(field);
+      endfunction
+
+      virtual function t1_entry clone(srm_addr_t index);
+        t1_entry obj;
+        obj = new(.name($psprintf("%s_%0d", get_name(), index)),
+                  .parent(_parent), .index(index));
+        __initialize(obj);
+        return obj;
+      endfunction
+    endclass
+
+    // Create the table t1.
+    function new(string name,  srm_node parent);
+      t1_entry entry;
+      super.new(name, parent, .num_entries(1024));
+      entry = new(.name("t1_entry"), .parent(this));
+      _prototype = entry;
+    endfunction
+
+  endclass
+    
+  //------------------------------------------------------
+  // Instantiate the children.
+  //------------------------------------------------------
   r1_reg r1_reg_inst;
+  t1_table t1_table_inst;
+
   function new(string name, srm_node parent);
     super.new(name, parent);
     r1_reg_inst = new(.name("r1_reg_inst"), .parent(this));
     add_child(r1_reg_inst);
     r1_reg_inst.set_offset("default", .offset('h0000_1000));
+
+    t1_table_inst = new(.name("t1_table_inst"), .parent(this));
+    add_child(t1_table_inst);
+    t1_table_inst.set_offset("default", .offset('h0));
   endfunction
   
 endclass: BlockA

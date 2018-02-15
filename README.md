@@ -16,7 +16,8 @@ bin  docs  examples  LICENSE.txt  README.txt  release-notes.txt  src  UVM_Refere
 
 ```
 
-3. [Simple Reg Model](https://github.com/Juniper/simple_reg_model)   
+3. [Simple Reg Model](https://github.com/Juniper/simple_reg_model/releases)
+Download the release file srm-0.2.tar.gz and untar it in a install directory.
 Ensure that the env variable *SRM_HOME* is pointing to the installation directory. 
 ```
 >ls $SRM_HOME
