@@ -6,8 +6,8 @@ class blockA_srm_reg_sequence extends uvm_sequence;
 
   BlockA regmodel;
   srm_base_handle handle;
-  reg[31:0] rd_data;
-  reg[31:0] exp_data;
+  BlockA::r1_struct_t rd_data;
+  BlockA::r1_struct_t exp_data;
 
   function new(string name="");
     super.new(name);
@@ -19,16 +19,19 @@ class blockA_srm_reg_sequence extends uvm_sequence;
   endfunction
 
   virtual task body();
-    exp_data = $urandom;
+    BlockA::r1_constr c1 = BlockA::r1_constr::type_id::create("r1_constr");
+    assert(c1.randomize());
+
+    exp_data = c1.get_data();
     `uvm_info(get_full_name(), 
-      $psprintf("Test Wr-Rd 0x%0x to r1_reg", exp_data), UVM_LOW);
+      $psprintf("Test Wr-Rd 0x%0x to r1_reg", exp_data.field0), UVM_LOW);
     regmodel.r1_reg_inst.write(handle, exp_data);
 
     `uvm_info(get_full_name(), "Starting blockA_srm_reg read", UVM_LOW);
     regmodel.r1_reg_inst.read(handle, rd_data);
     if(rd_data != exp_data) begin
       `uvm_error(get_full_name(), 
-        $psprintf("Read Mismatch. Reg r1 ReadData=0x%0x, Exp=0x%0x", rd_data, exp_data))
+        $psprintf("Read Mismatch. Reg r1 ReadData=0x%0x, Exp=0x%0x", rd_data.field0, exp_data.field0))
     end
     else begin
       `uvm_info(get_full_name(), 

@@ -28,7 +28,7 @@ class BlockA extends srm_node;
      function r1_struct_t get_data(); 
        r1_struct_t d; 
        d.field0 = field0;
- 
+       return d; 
      endfunction
   endclass: r1_constr
 
@@ -65,7 +65,7 @@ class BlockA extends srm_node;
      function t1_struct_t get_data(); 
        t1_struct_t d; 
        d.field0 = field0;
- 
+       return d; 
      endfunction
   endclass: t1_constr
 

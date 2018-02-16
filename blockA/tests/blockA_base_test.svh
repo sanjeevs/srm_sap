@@ -47,7 +47,7 @@ class blockA_base_test extends uvm_test;
   
   function void connect_phase(uvm_phase phase);
     regmodel.add_adapter(env.pio_agent_inst.adapter);
-    regmodel.r1_reg_inst.add_adapter(backdoor_adapter);
+    regmodel.add_adapter(backdoor_adapter);
   endfunction
 
   function int get_num_errors();

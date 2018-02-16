@@ -6,8 +6,8 @@ class blockA_srm_table_sequence extends uvm_sequence;
 
   BlockA regmodel;
   srm_base_handle handle;
-  reg[31:0] rd_data;
-  reg[31:0] exp_data;
+  BlockA::t1_struct_t rd_data;
+  BlockA::t1_struct_t exp_data;
 
   function new(string name="");
     super.new(name);
@@ -19,7 +19,10 @@ class blockA_srm_table_sequence extends uvm_sequence;
   endfunction
 
   virtual task body();
-    exp_data = $urandom;
+    BlockA::t1_constr c1 = BlockA::t1_constr::type_id::create("t1_constr");
+    assert(c1.randomize());
+
+    exp_data = c1.get_data();
     `uvm_info(get_full_name(), 
       $psprintf("Test Wr-Rd 0x%0x to t1_table", exp_data), UVM_LOW);
     regmodel.t1_table_inst.entry_at(1023).write(handle, exp_data);

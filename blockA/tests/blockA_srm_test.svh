@@ -27,9 +27,13 @@ class blockA_srm_test extends blockA_base_test;
     table_seq.initialize(.regmodel(regmodel), .handle(pio_handle));
     table_seq.start(null);
 
-    `uvm_info(get_full_name(), "Running backdoortraffic", UVM_NONE);
+    `uvm_info(get_full_name(), "Running backdoortraffic on r1", UVM_NONE);
     reg_seq.handle = backdoor_handle;
     reg_seq.start(null);
+
+    `uvm_info(get_full_name(), "Running backdoortraffic on t1", UVM_NONE);
+    table_seq.handle = backdoor_handle;
+    table_seq.start(null);
 
     phase.drop_objection(.obj(this));
 
