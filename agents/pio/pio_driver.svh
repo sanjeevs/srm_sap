@@ -27,6 +27,7 @@ task pio_driver::run_phase(uvm_phase phase);
   pio_xact xact;
   `uvm_info("RunPhase", "In run phase for reset driver", UVM_LOW)
 
+  vif.cmd_vld = 1'b0;
   @(negedge vif.reset);
   `uvm_info(get_type_name(), "Reset De-asserted", UVM_LOW)
   repeat(2) @(posedge vif.clk);

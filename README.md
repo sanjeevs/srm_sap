@@ -1,7 +1,9 @@
 This is a demo of the [SimpleRegModel](https://github.com/Juniper/simple_reg_model) package used in a [uvm testbench](http://accellera.org/downloads/standards/uvm).  
 
-The *SRM* package provides several advantages over the *uvm_reg* package that is shipped with uvm. The demo focusses on showing how sequences can be reused across multiple testbench hierarchy and different access mechanism.
+## Purpose
+The *SRM* package provides several advantages over the *uvm_reg* package that is shipped with uvm. **The demo focusses on showing how a block level sequence can be reused unchanged across multiple testbench hierarchy and different access mechanism.**
 
+## Details
 Details about the designs and testbenches can be found [here](http://github.com/sanjeevs/srm_sap/wiki)
 
 ## Prerequisites

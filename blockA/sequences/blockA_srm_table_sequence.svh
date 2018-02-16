@@ -22,10 +22,10 @@ class blockA_srm_table_sequence extends uvm_sequence;
     exp_data = $urandom;
     `uvm_info(get_full_name(), 
       $psprintf("Test Wr-Rd 0x%0x to t1_table", exp_data), UVM_LOW);
-    regmodel.t1_table_inst.entry_at(0).write(handle, exp_data);
+    regmodel.t1_table_inst.entry_at(1023).write(handle, exp_data);
 
     `uvm_info(get_full_name(), "Starting blockA_srm_table read", UVM_LOW);
-    regmodel.t1_table_inst.entry_at(0).read(handle, rd_data);
+    regmodel.t1_table_inst.entry_at(1023).read(handle, rd_data);
     if(rd_data != exp_data) begin
       `uvm_error(get_full_name(), 
         $psprintf("Read Mismatch. block t1 ReadData=0x%0x, Exp=0x%0x", rd_data, exp_data))
