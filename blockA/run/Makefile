@@ -33,6 +33,7 @@ TB = $(SAP_HOME)/blockA/tb/clkgen_if.sv \
      $(SAP_HOME)/blockA/tb/tb.sv \
      $(SAP_HOME)/agents/pio/pio_agent_pkg.sv \
      $(SAP_HOME)/blockA/regmodel/blockA_srm_model_pkg.sv \
+     $(SAP_HOME)/blockA/regmodel/blockA_srm_constr_pkg.sv \
      $(SAP_HOME)/blockA/sequences/blockA_srm_reg_sequences_pkg.sv \
      $(SAP_HOME)/blockA/backdoor/blockA_backdoor_pkg.sv \
      $(SAP_HOME)/blockA/env/blockA_env_pkg.sv \

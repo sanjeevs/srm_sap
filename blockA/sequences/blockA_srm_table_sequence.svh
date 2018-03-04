@@ -19,16 +19,16 @@ class blockA_srm_table_sequence extends uvm_sequence;
   endfunction
 
   virtual task body();
-    BlockA::t1_constr c1 = BlockA::t1_constr::type_id::create("t1_constr");
+    blockA_constr::t1_constr c1 = blockA_constr::t1_constr::type_id::create("t1_constr");
     assert(c1.randomize());
 
     exp_data = c1.get_data();
     `uvm_info(get_full_name(), 
       $psprintf("Test Wr-Rd 0x%0x to t1_table", exp_data), UVM_LOW);
-    regmodel.t1_table_inst.entry_at(1023).write(handle, exp_data);
+    regmodel.t1.entry_at(1023).write(handle, exp_data);
 
     `uvm_info(get_full_name(), "Starting blockA_srm_table read", UVM_LOW);
-    regmodel.t1_table_inst.entry_at(1023).read(handle, rd_data);
+    regmodel.t1.entry_at(1023).read(handle, rd_data);
     if(rd_data != exp_data) begin
       `uvm_error(get_full_name(), 
         $psprintf("Read Mismatch. block t1 ReadData=0x%0x, Exp=0x%0x", rd_data, exp_data))

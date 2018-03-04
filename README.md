@@ -51,6 +51,7 @@ To run the blockA testbench, run the target 'run_vcs' in the run directory,
    cd $SAP_HOME/blockA/run
    make run_vcs
 ```
+The test spawns a basic [sequence](https://github.com/sanjeevs/srm_sap/wiki/Sequence) that writes and reads the register and the table.
 
 ## Running SAP1 testbench.
 To run the SAP1 testbench, run the target 'run_vcs' in the run directory,
@@ -58,6 +59,7 @@ To run the SAP1 testbench, run the target 'run_vcs' in the run directory,
    cd $SAP_HOME/sap1/run
    make run_vcs
 ```
+Note that the [test](https://github.com/sanjeevs/srm_sap/wiki/SAP1_test) in the SAP1 testbench spawns the same sequence from the block level test. No changes are done to the sequence, yet it runs on different adapters. It is spawned on the host agent just like real world. If faster simulation time is desired, we can spawn it on the internal block PIO bus. If backdoor path is known then we can even directly program the registers in zero time.
 
 ## Running SAP2 testbench.
 To run the SAP2 testbench, run the target 'run_vcs' in the run directory,
@@ -65,5 +67,6 @@ To run the SAP2 testbench, run the target 'run_vcs' in the run directory,
    cd $SAP_HOME/sap2/run
    make run_vcs
 ```
+As before, the [test](https://github.com/sanjeevs/srm_sap/wiki/SAP2_test) in the SAP2 testbench spawns the same sequence from the block level test. No changes are done to the sequence, yet it runs on different adapters like in SAP1, but targetted towards different instances of SAP1. 
 
 
