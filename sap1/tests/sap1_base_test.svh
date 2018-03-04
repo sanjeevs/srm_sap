@@ -50,7 +50,7 @@ class sap1_base_test extends uvm_test;
   
   function void connect_phase(uvm_phase phase);
     regmodel.add_adapter(env.host_agent_inst.adapter);
-    regmodel.blockA.r1_reg_inst.add_adapter(backdoor_adapter);
+    regmodel.blockA.r1.add_adapter(backdoor_adapter);
     regmodel.blockA.add_adapter(env.pio_agent_inst.adapter);
   endfunction
 

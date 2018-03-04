@@ -41,6 +41,7 @@ TB = $(SAP_HOME)/sap1/tb/tb.sv \
      $(SAP_HOME)/agents/host/host_agent_pkg.sv \
      $(SAP_HOME)/agents/pio/pio_agent_pkg.sv \
      $(SAP_HOME)/blockA/regmodel/blockA_srm_model_pkg.sv \
+     $(SAP_HOME)/blockA/regmodel/blockA_srm_constr_pkg.sv \
      $(SAP_HOME)/sap1/regmodel/sap1_srm_model_pkg.sv \
      $(SAP_HOME)/blockA/sequences/blockA_srm_reg_sequences_pkg.sv \
      $(SAP_HOME)/blockA/backdoor/blockA_backdoor_pkg.sv \

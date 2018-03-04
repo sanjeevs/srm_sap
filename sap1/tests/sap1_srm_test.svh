@@ -22,6 +22,12 @@ class sap1_srm_test extends sap1_base_test;
     phase.raise_objection(.obj(this));
     wait_for_reset();
 
+    $display("=========================================================");
+    $display("=========================================================");
+    $display(" STARTING TEST");
+    $display("=========================================================");
+    $display("=========================================================");
+
     `uvm_info(get_full_name(), "Running register host adapter", UVM_NONE);
     reg_seq.initialize(.regmodel(regmodel.blockA), .handle(host_handle));
     reg_seq.start(null);

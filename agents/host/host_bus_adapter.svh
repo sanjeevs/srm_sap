@@ -32,7 +32,7 @@ class host_bus_adapter extends srm_bus_adapter;
 
   endtask
 
-  virtual function logic[15:0] global_2_local_addr(srm_addr_t global_addr);
+  virtual function logic[31:0] global_2_local_addr(srm_addr_t global_addr);
     return global_addr[31:0];
   endfunction
 
